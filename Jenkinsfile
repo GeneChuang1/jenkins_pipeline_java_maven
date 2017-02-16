@@ -13,11 +13,14 @@ node {
    stage 'Build'
    // Run the maven build
    //Original Code:
-   bat "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package"
    //sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package"
    //step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
 
 	//Start of Gene's Test Code:
+   bat "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package"
+   step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+
+
 	//try {
 	//	sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package"
 	//} catch (err){
